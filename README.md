@@ -4,9 +4,6 @@
 
 ### Install
 
-```bash
-go get github.com/xuqingfeng/fregata
-```
 ### Usage
 
 ### Test
