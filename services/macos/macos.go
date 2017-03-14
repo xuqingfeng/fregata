@@ -1,4 +1,4 @@
-package slack
+package macos
 
 import (
 	"log"
@@ -20,12 +20,7 @@ func NewService(c Config, l *log.Logger, r *mux.Router) *Service {
 		router: r,
 	}
 	s.configValue.Store(c)
-	s.router.HandleFunc("/slack", ServiceHandler(c))
+	s.router.HandleFunc("/macos", ServiceHandler(c))
 
-	return s
-}
-
-func (s *Service) config() Config {
-
-	return s.configValue.Load().(Config)
+    return s
 }

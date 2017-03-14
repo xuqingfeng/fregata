@@ -7,6 +7,7 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/xuqingfeng/fregata/logging"
+	"github.com/xuqingfeng/fregata/services/macos"
 	"github.com/xuqingfeng/fregata/services/slack"
 	"github.com/xuqingfeng/fregata/vars"
 )
@@ -37,6 +38,7 @@ func New(c *Config, logService logging.Interface) (*Server, error) {
 	s.Logger.Printf("I! %s server started\n", vars.DaemonName)
 
 	s.appendSlackService()
+	s.appendMacosService()
 
 	if err := http.ListenAndServe(":2017", router); err != nil {
 		return nil, fmt.Errorf("%s", err)
@@ -52,5 +54,15 @@ func (s *Server) appendSlackService() {
 		l := s.LogService.NewLogger("[slack] ", log.LstdFlags)
 		r := s.router
 		slack.NewService(c, l, r)
+	}
+}
+
+func (s *Server) appendMacosService() {
+
+	c := s.config.Macos
+	if c.Enabled {
+		l := s.LogService.NewLogger("[macos] ", log.LstdFlags)
+		r := s.router
+		macos.NewService(c, l, r)
 	}
 }

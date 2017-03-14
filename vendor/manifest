@@ -10,6 +10,14 @@
 			"notests": true
 		},
 		{
+			"importpath": "github.com/everdev/mack",
+			"repository": "https://github.com/everdev/mack",
+			"vcs": "git",
+			"revision": "e4f4e8b82fc84d5aad5c0379e7e5f18777cb1fc2",
+			"branch": "master",
+			"notests": true
+		},
+		{
 			"importpath": "github.com/gorilla/context",
 			"repository": "https://github.com/gorilla/context",
 			"vcs": "git",
