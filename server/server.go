@@ -25,7 +25,7 @@ func New(c *Config, logService logging.Interface) (*Server, error) {
 	if err := c.Validate(); err != nil {
 		return nil, fmt.Errorf("%s", err)
 	}
-	l := logService.NewLogger("[srv] ", log.LstdFlags)
+	l := logService.NewLogger("[server] ", log.LstdFlags)
 	router := mux.NewRouter()
 	apiRouter := router.PathPrefix(vars.APIBasePath).Subrouter()
 	s := &Server{
@@ -48,7 +48,9 @@ func New(c *Config, logService logging.Interface) (*Server, error) {
 func (s *Server) appendSlackService() {
 
 	c := s.config.Slack
-	l := s.LogService.NewLogger("[slack] ", log.LstdFlags)
-	r := s.router
-	slack.NewService(c, l, r)
+	if c.Enabled {
+		l := s.LogService.NewLogger("[slack] ", log.LstdFlags)
+		r := s.router
+		slack.NewService(c, l, r)
+	}
 }

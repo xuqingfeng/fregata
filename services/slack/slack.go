@@ -20,6 +20,11 @@ func NewService(c Config, l *log.Logger, r *mux.Router) *Service {
 	}
 	s.configValue.Store(c)
 	s.router = r
-	s.router.HandleFunc("/slack", ServiceHandler)
+	s.router.HandleFunc("/slack", ServiceHandler(c))
 	return s
+}
+
+func (s *Service) config() Config {
+
+	return s.configValue.Load().(Config)
 }
