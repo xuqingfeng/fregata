@@ -18,4 +18,7 @@ const (
 	*/
 	// slack
 	SlackDefaultUsername = "fregate"
+
+	// telegram
+	TelegramDefaultURL = "https://api.telegram.org/bot"
 )

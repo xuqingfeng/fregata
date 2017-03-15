@@ -85,7 +85,7 @@ func sendMessage(c Config, m message) error {
 		if err != nil {
 			return err
 		}
-		return errors.New(err.Error())
+		return errors.New(e.Error)
 	}
 
 	return nil

@@ -21,6 +21,7 @@ func NewService(c Config, l *log.Logger, r *mux.Router) *Service {
 	}
 	s.configValue.Store(c)
 	s.router.HandleFunc("/slack", ServiceHandler(c))
+	s.logger.Println("I! service started")
 
 	return s
 }

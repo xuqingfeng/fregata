@@ -9,6 +9,7 @@ import (
 	"github.com/xuqingfeng/fregata/logging"
 	"github.com/xuqingfeng/fregata/services/macos"
 	"github.com/xuqingfeng/fregata/services/slack"
+	"github.com/xuqingfeng/fregata/services/telegram"
 	"github.com/xuqingfeng/fregata/vars"
 )
 
@@ -35,10 +36,11 @@ func New(c *Config, logService logging.Interface) (*Server, error) {
 		LogService: logService,
 		Logger:     l,
 	}
-	s.Logger.Printf("I! %s server started\n", vars.DaemonName)
+	s.Logger.Printf("I! %s started\n", vars.DaemonName)
 
 	s.appendSlackService()
 	s.appendMacosService()
+	s.appendTelegramService()
 
 	if err := http.ListenAndServe(":2017", router); err != nil {
 		return nil, fmt.Errorf("%s", err)
@@ -64,5 +66,15 @@ func (s *Server) appendMacosService() {
 		l := s.LogService.NewLogger("[macos] ", log.LstdFlags)
 		r := s.router
 		macos.NewService(c, l, r)
+	}
+}
+
+func (s *Server) appendTelegramService() {
+
+	c := s.config.Telegram
+	if c.Enabled {
+		l := s.LogService.NewLogger("[telegram] ", log.LstdFlags)
+		r := s.router
+		telegram.NewService(c, l, r)
 	}
 }

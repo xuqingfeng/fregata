@@ -1,4 +1,4 @@
-package macos
+package telegram
 
 import (
 	"log"
@@ -20,7 +20,8 @@ func NewService(c Config, l *log.Logger, r *mux.Router) *Service {
 		router: r,
 	}
 	s.configValue.Store(c)
-	s.router.HandleFunc("/macos", ServiceHandler(c))
+	s.router.HandleFunc("/telegram", ServiceHandler(c))
+
 	s.logger.Println("I! service started")
 
 	return s
