@@ -25,8 +25,3 @@ func NewService(c Config, l *log.Logger, r *mux.Router) *Service {
 
 	return s
 }
-
-func (s *Service) config() Config {
-
-	return s.configValue.Load().(Config)
-}

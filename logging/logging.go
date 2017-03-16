@@ -1,11 +1,12 @@
 package logging
 
 import (
-	"github.com/influxdata/wlog"
 	"io"
 	"log"
 	"os"
 	"path"
+
+    "github.com/influxdata/wlog"
 )
 
 type Level wlog.Level
@@ -42,6 +43,7 @@ func NewService(c Config, stdout, stderr io.Writer) *Service {
 	}
 }
 
+// Open set log path to STDOUT, STDERR or FILE
 func (s *Service) Open() error {
 
 	switch s.c.File {
@@ -64,7 +66,7 @@ func (s *Service) Open() error {
 		}
 		s.f = f
 	}
-	log.SetPrefix("[log] ")
+	log.SetPrefix("[logging] ")
 	log.SetFlags(log.LstdFlags)
 	log.SetOutput(wlog.NewWriter(s.f))
 

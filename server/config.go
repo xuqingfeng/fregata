@@ -1,3 +1,4 @@
+// package server provide a http server
 package server
 
 import (
@@ -25,6 +26,7 @@ func NewConfig() *Config {
 	return c
 }
 
+// Validate make sure all service have valid configs
 func (c *Config) Validate() error {
 
 	if err := c.Slack.Validate(); err != nil {

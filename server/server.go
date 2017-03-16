@@ -22,6 +22,7 @@ type Server struct {
 	Logger     *log.Logger
 }
 
+// New start http server and activate relative services
 func New(c *Config, logService logging.Interface) (*Server, error) {
 
 	if err := c.Validate(); err != nil {
@@ -37,6 +38,7 @@ func New(c *Config, logService logging.Interface) (*Server, error) {
 		Logger:     l,
 	}
 	s.Logger.Printf("I! %s started\n", vars.DaemonName)
+    s.router.HandleFunc("/ping", ServiceHandler)
 
 	s.appendSlackService()
 	s.appendMacosService()

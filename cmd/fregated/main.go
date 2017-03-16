@@ -4,7 +4,6 @@ import (
 	"errors"
 	"flag"
 	"fmt"
-	"io"
 	"log"
 	"os"
 
@@ -26,9 +25,6 @@ var (
 
 type Main struct {
 	Logger *log.Logger
-	Stdin  io.Reader
-	Stdout io.Writer
-	Stderr io.Writer
 }
 
 type options struct {
@@ -49,13 +45,11 @@ func main() {
 func NewMain() *Main {
 
 	return &Main{
-		Logger: wlog.New(os.Stderr, "[fregated] ", log.LstdFlags),
-		Stdin:  os.Stdin,
-		Stdout: os.Stdout,
-		Stderr: os.Stderr,
+		Logger: wlog.New(os.Stdout, "[fregated] ", log.LstdFlags),
 	}
 }
 
+// Run accept stdin args, parse flags and start server
 func (m *Main) Run(args ...string) error {
 
 	var o options
@@ -76,7 +70,7 @@ func (m *Main) Run(args ...string) error {
 		if err != nil {
 			return err
 		}
-		logService := logging.NewService(config.Logging, m.Stdout, m.Stderr)
+		logService := logging.NewService(config.Logging, os.Stdout, os.Stderr)
 		logService.Open()
 		defer logService.Close()
 		_, err = server.New(config, logService)
