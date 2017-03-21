@@ -4,7 +4,7 @@ package macos
 import (
 	"runtime"
 
-    "github.com/pkg/errors"
+	"github.com/pkg/errors"
 )
 
 type Config struct {

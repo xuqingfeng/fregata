@@ -6,6 +6,7 @@ import (
 	"github.com/xuqingfeng/fregata/services/macos"
 	"github.com/xuqingfeng/fregata/services/slack"
 	"github.com/xuqingfeng/fregata/services/telegram"
+	"github.com/xuqingfeng/fregata/services/wechat"
 )
 
 type Config struct {
@@ -13,6 +14,7 @@ type Config struct {
 	Slack    slack.Config    `toml:"slack"`
 	Macos    macos.Config    `toml:"macos"`
 	Telegram telegram.Config `toml:"telegram"`
+	Wechat   wechat.Config   `toml:"wechat"`
 }
 
 func NewConfig() *Config {
@@ -22,6 +24,7 @@ func NewConfig() *Config {
 	c.Slack = slack.NewConfig()
 	c.Macos = macos.NewConfig()
 	c.Telegram = telegram.NewConfig()
+	c.Wechat = wechat.NewConfig()
 
 	return c
 }

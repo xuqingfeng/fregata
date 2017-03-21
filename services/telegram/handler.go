@@ -28,9 +28,9 @@ func ServiceHandler(c Config) http.HandlerFunc {
 }
 
 type message struct {
-	Text                  string `json:"text"`
-	ChatId                string `json:"chat_id"`
-	ParseMode             string `json:"parse_mode"`
+	Text      string `json:"text"`
+	ChatId    string `json:"chat_id"`
+	ParseMode string `json:"parse_mode"`
 }
 
 func sendMessage(c Config, m message) error {

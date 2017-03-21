@@ -6,7 +6,7 @@ import (
 	"os"
 	"path"
 
-    "github.com/influxdata/wlog"
+	"github.com/influxdata/wlog"
 )
 
 type Level wlog.Level
