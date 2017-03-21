@@ -1,7 +1,7 @@
 package wechat
 
 import (
-	"gopkg.in/square/go-jose.v1/json"
+	"encoding/json"
 	"net/http"
 )
 

@@ -1,3 +1,4 @@
+// coding according to this document: https://github.com/biezhi/wechat-robot/blob/master/doc/protocol.md
 package wechat
 
 import (
@@ -19,6 +20,7 @@ import (
 	"github.com/xuqingfeng/fregata/vars"
 )
 
+// Login is used to ask user to scan QR code and obtain keys for later use.
 func (s *Service) Login() (baseRequest, string, error) {
 
 	var b baseRequest
@@ -222,6 +224,7 @@ func (s *Service) getKeys(redirectUrl string) (redirectUrlResp, error) {
 }
 
 func (s *Service) getDeviceID() string {
+	// fake device id
 
 	base := []byte("0123456789")
 	var deviceID []byte
@@ -258,6 +261,7 @@ type user struct {
 }
 
 func (s *Service) wxInit(b baseRequest) error {
+	// probably don't need this
 
 	type params struct {
 		BaseRequest baseRequest `json:"BaseRequest"`
@@ -337,6 +341,8 @@ func sendWechatMessage(b baseRequest, pass_ticket, content, from, to string) err
 		return err
 	}
 	defer resp.Body.Close()
+
+	// TODO: 17/3/21 get response body
 
 	return nil
 }

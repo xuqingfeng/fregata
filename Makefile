@@ -1,6 +1,3 @@
-deps:
-	go get -v -d ./...
-
 test:
 	go test -v $$(go list ./... | grep -v /vendor/)
 

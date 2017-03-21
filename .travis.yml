@@ -4,7 +4,5 @@ go:
   - tip
 os:
   - linux
-install:
-  - go get -v ./...
 script:
   - make test
