@@ -1,4 +1,4 @@
 /*
-   A message delivery tool, support multiple services.
+   A self hosted message delivery tool.
 */
 package fregata

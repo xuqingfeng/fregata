@@ -1,5 +1,5 @@
 FROM alpine:3.5
-MAINTAINER Xu Qinfeng<js-xqf@hotmail.com>
+MAINTAINER https://github.com/xuqingfeng
 
 COPY out/fregated /usr/local/bin/fregated
 COPY out/fregate /usr/local/bin/fregate

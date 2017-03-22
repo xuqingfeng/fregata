@@ -18,7 +18,7 @@ const (
 	   Service
 	*/
 	// slack
-	SlackDefaultUsername = "fregate"
+	SlackDefaultUsername = Name
 
 	// telegram
 	TelegramDefaultURL = "https://api.telegram.org/bot"

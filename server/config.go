@@ -41,6 +41,9 @@ func (c *Config) Validate() error {
 	if err := c.Telegram.Validate(); err != nil {
 		return err
 	}
+	if err := c.Wechat.Validate(); err != nil {
+		return err
+	}
 
 	return nil
 }
