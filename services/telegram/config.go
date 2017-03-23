@@ -1,4 +1,4 @@
-//package telegram provide functionality for telegram
+// Package telegram provide functionality for telegram.
 package telegram
 
 import (

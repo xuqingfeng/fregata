@@ -1,4 +1,4 @@
-//package logging provide different log strategies
+// Package logging provide different log strategies.
 package logging
 
 type Config struct {

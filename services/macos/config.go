@@ -1,4 +1,4 @@
-//package macos provide functionality for macOS
+// Package macos provide functionality for macOS.
 package macos
 
 import (

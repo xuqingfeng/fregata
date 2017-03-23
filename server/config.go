@@ -1,4 +1,4 @@
-// package server provide a http server
+// Package server provide a http server.
 package server
 
 import (

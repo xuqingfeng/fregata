@@ -1,4 +1,4 @@
-//package slack provide functionality for slack
+// Package slack provide functionality for slack.
 package slack
 
 import (

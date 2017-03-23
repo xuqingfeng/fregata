@@ -1,4 +1,4 @@
-//package vars keeps all variables
+// Package vars keeps all variables.
 package vars
 
 const (

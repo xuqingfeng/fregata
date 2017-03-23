@@ -1,4 +1,4 @@
-// coding according to this document: https://github.com/biezhi/wechat-robot/blob/master/doc/protocol.md
+// Coding according to this document: https://github.com/biezhi/wechat-robot/blob/master/doc/protocol.md
 package wechat
 
 import (

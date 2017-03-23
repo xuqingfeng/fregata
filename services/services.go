@@ -1,3 +1,4 @@
+// Package services provide general struct and function used by all other services.
 package services
 
 import (
