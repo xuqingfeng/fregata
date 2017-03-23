@@ -45,7 +45,7 @@ func main() {
 func NewMain() *Main {
 
 	return &Main{
-		Logger: wlog.New(os.Stdout, "[fregated] ", log.LstdFlags),
+		Logger: wlog.New(os.Stdout, "[fregatad] ", log.LstdFlags),
 	}
 }
 

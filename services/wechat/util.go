@@ -108,7 +108,7 @@ func (s *Service) getQR(uuid string) error {
 
 	// TODO: 17/3/20 output QR code in terminal
 	qrcodeUrl := fmt.Sprintf("%s/%s", vars.WechatQRUrl, uuid)
-	s.logger.Printf("I! go to %s scan and login", qrcodeUrl)
+	fmt.Printf("I! go to %s; scan the QR code and login", qrcodeUrl)
 
 	//code, err := qrcode.New(qrcodeUrl, qrcode.Medium)
 	//if err != nil {

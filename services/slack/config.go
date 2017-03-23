@@ -28,7 +28,8 @@ func (c Config) Validate() error {
 		return errors.New("must specify url")
 	}
 	if _, err := url.Parse(c.URL); err != nil {
-		return errors.Wrapf(err, "invalid url %q", c.URL)
+		return err
+		//return errors.Wrapf(err, "invalid url %q", c.URL)
 	}
 
 	return nil

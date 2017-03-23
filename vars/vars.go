@@ -5,8 +5,8 @@ const (
 	/*
 	   App
 	*/
-	Name       = "fregate"
-	DaemonName = "fregated"
+	Name       = "fregata"
+	DaemonName = "fregatad"
 	Version    = "0.0.1"
 
 	/*

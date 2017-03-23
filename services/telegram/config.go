@@ -2,6 +2,8 @@
 package telegram
 
 import (
+	"net/url"
+
 	"github.com/pkg/errors"
 	"github.com/xuqingfeng/fregata/vars"
 )
@@ -24,6 +26,14 @@ func NewConfig() Config {
 }
 
 func (c Config) Validate() error {
+
+	if c.Enabled && c.URL == "" {
+		return errors.New("must specify url")
+	}
+
+	if _, err := url.Parse(c.URL); err != nil {
+		return errors.Wrapf(err, "invalid url %q", c.URL)
+	}
 
 	if c.ParseMode != "Markdown" && c.ParseMode != "HTML" {
 		return errors.Errorf("parse-mode %s not valid, use 'Markdown' or 'HTML'", c.ParseMode)
