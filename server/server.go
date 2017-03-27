@@ -9,6 +9,7 @@ import (
 	"github.com/xuqingfeng/fregata/logging"
 	"github.com/xuqingfeng/fregata/services/macos"
 	"github.com/xuqingfeng/fregata/services/slack"
+	"github.com/xuqingfeng/fregata/services/smtp"
 	"github.com/xuqingfeng/fregata/services/telegram"
 	"github.com/xuqingfeng/fregata/services/wechat"
 	"github.com/xuqingfeng/fregata/vars"
@@ -45,6 +46,7 @@ func New(c *Config, logService logging.Interface) (*Server, error) {
 	s.appendMacosService()
 	s.appendTelegramService()
 	s.appendWechatService()
+	s.appendSMTPService()
 
 	if err := http.ListenAndServe(":2017", router); err != nil {
 		return nil, fmt.Errorf("%s", err)
@@ -91,5 +93,16 @@ func (s *Server) appendWechatService() {
 		r := s.router
 
 		wechat.NewService(c, l, r)
+	}
+}
+
+func (s *Server) appendSMTPService() {
+
+	c := s.config.SMTP
+	if c.Enabled {
+		l := s.LogService.NewLogger("[smtp] ", log.LstdFlags)
+		r := s.router
+
+		smtp.NewService(c, l, r)
 	}
 }

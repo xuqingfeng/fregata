@@ -27,7 +27,7 @@ func TestSendMessage(t *testing.T) {
 		{Config{URL: testServer.URL, ParseMode: "Markdown"}, message{Text: "test"}, false},
 	}
 
-	t.Logf("I! testServer url %s", testServer.URL)
+	//t.Logf("I! testServer url %s", testServer.URL)
 	for i, test := range tests {
 		err := sendMessage(test.c, test.m)
 		if err != nil && !test.shouldErr {

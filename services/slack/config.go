@@ -1,4 +1,4 @@
-// Package slack provide functionality for slack.
+// Package slack provide service for sending message to slack.
 package slack
 
 import (
@@ -28,8 +28,7 @@ func (c Config) Validate() error {
 		return errors.New("must specify url")
 	}
 	if _, err := url.Parse(c.URL); err != nil {
-		return err
-		//return errors.Wrapf(err, "invalid url %q", c.URL)
+		return errors.Wrapf(err, "invalid url %q", c.URL)
 	}
 
 	return nil
