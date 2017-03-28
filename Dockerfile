@@ -1,4 +1,5 @@
 FROM alpine:3.5
+
 MAINTAINER https://github.com/xuqingfeng
 
 COPY out/fregated /usr/local/bin/fregated

@@ -1,4 +1,5 @@
 // Coding according to this document: https://github.com/biezhi/wechat-robot/blob/master/doc/protocol.md
+// http://www.sunrui123.com/archives/15
 package wechat
 
 import (
@@ -75,7 +76,6 @@ func (s *Service) getUUID() (string, error) {
 	} else if uuid := matches[2]; uuid == "" {
 		return "", errors.New("uuid empty")
 	}
-	s.logger.Printf("I! uuid: %s", matches[2])
 
 	return matches[2], nil
 }
@@ -108,7 +108,7 @@ func (s *Service) getQR(uuid string) error {
 
 	// TODO: 17/3/20 output QR code in terminal
 	qrcodeUrl := fmt.Sprintf("%s/%s", vars.WechatQRUrl, uuid)
-	fmt.Printf("I! go to %s; scan the QR code and login", qrcodeUrl)
+	s.logger.Printf("I! go to %s; scan the QR code and login\n", qrcodeUrl)
 
 	//code, err := qrcode.New(qrcodeUrl, qrcode.Medium)
 	//if err != nil {
@@ -150,10 +150,11 @@ func showQRCode(code *qrcode.QRCode) {
 	}
 }
 
+// waitForLogin wait user scan QR code and login
 func (s *Service) waitForLogin(uuid string, tip int) (string, error) {
 
 	var redirectUrl string
-	retry := 10
+	retry := 5
 Wait:
 	for {
 		if retry <= 0 {
@@ -223,8 +224,8 @@ func (s *Service) getKeys(redirectUrl string) (redirectUrlResp, error) {
 	return ret, nil
 }
 
+// getDeviceID generate fake device id
 func (s *Service) getDeviceID() string {
-	// fake device id
 
 	base := []byte("0123456789")
 	var deviceID []byte
@@ -301,6 +302,9 @@ func (s *Service) wxInit(b baseRequest, pass_ticket string) (string, error) {
 	if err != nil {
 		return "", err
 	}
+	if r.BaseResponse.Ret != 0 {
+		return "", errors.Errorf("Ret: %d, ErrMsg: %s", r.BaseResponse.Ret, r.BaseResponse.ErrMsg)
+	}
 
 	return r.User.UserName, nil
 }
@@ -332,6 +336,29 @@ func (s *Service) notify(b baseRequest, pass_ticket, from, to string) error {
 		return err
 	}
 	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+
+		body, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			return err
+		}
+		return errors.New(string(body))
+	}
+
+	type notifyResponse struct {
+		BaseResponse baseResponse `json:"BaseResponse"`
+	}
+
+	var r notifyResponse
+	err = json.NewDecoder(resp.Body).Decode(&r)
+	if err != nil {
+		return err
+	}
+	s.logger.Printf("I! notify response %+v", r)
+	if r.BaseResponse.Ret != 0 {
+		return errors.Errorf("Ret: %d, ErrMsg: %s", r.BaseResponse.Ret, r.BaseResponse.ErrMsg)
+	}
 
 	return nil
 }
@@ -374,7 +401,28 @@ func sendWechatMessage(b baseRequest, pass_ticket, content, from, to string) err
 	}
 	defer resp.Body.Close()
 
-	// TODO: 17/3/21 get response body
+	if resp.StatusCode != http.StatusOK {
+
+		body, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			return err
+		}
+		return errors.New(string(body))
+	}
+
+	type sendMessageResponse struct {
+		BaseResponse baseResponse `json:"BaseResponse"`
+	}
+
+	var r sendMessageResponse
+	err = json.NewDecoder(resp.Body).Decode(&r)
+	if err != nil {
+		return err
+	}
+	fmt.Printf("I! send message response %+v", r)
+	if r.BaseResponse.Ret != 0 {
+		return errors.Errorf("Ret: %d, ErrMsg: %s", r.BaseResponse.Ret, r.BaseResponse.ErrMsg)
+	}
 
 	return nil
 }
