@@ -72,10 +72,16 @@ func sendMessage(c Config, m message) error {
 	mail.SetHeader("Subject", m.Subject)
 	mail.SetBody("text/html", m.Body)
 
+	// SMTP
 	d := gomail.NewDialer(c.Host, c.Port, c.Username, c.Password)
 	if err := d.DialAndSend(mail); err != nil {
 		return err
 	}
+
+	// TODO: 17/3/27 postfix
+	//if err := gomail.Send(); err != nil {
+	//
+	//}
 
 	return nil
 }

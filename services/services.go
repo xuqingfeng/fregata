@@ -9,7 +9,7 @@ import (
 // Msg is the general message returned to client
 type Msg struct {
 	Success bool   `json:"success"`
-	Message string `json:"message"`
+	Message string `json:"message,omitempty"`
 }
 
 // SendMessage send json data to client
