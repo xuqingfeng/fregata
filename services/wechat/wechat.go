@@ -23,6 +23,12 @@ func NewService(c Config, l *log.Logger, r *mux.Router) *Service {
 	if err != nil {
 		s.logger.Printf("E! login fail %s", err.Error())
 	}
+	s.logger.Printf("I! baseRequest %v", b)
+	sender, err := s.wxInit(b, p)
+	if err != nil {
+		s.logger.Printf("E! init fail %s", err.Error())
+	}
+	err = s.notify(b, p, sender, "filehelper")
 	c.BaseRequest = b
 	c.PassTicket = p
 	s.configValue.Store(c)

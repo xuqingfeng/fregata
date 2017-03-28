@@ -5,6 +5,7 @@ type Config struct {
 	Enabled     bool `toml:"enabled"`
 	BaseRequest baseRequest
 	PassTicket  string
+	From        string
 }
 
 func NewConfig() Config {

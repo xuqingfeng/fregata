@@ -260,7 +260,7 @@ type user struct {
 	NickName string `json:"NickName"`
 }
 
-func (s *Service) wxInit(b baseRequest) error {
+func (s *Service) wxInit(b baseRequest, pass_ticket string) (string, error) {
 	// probably don't need this
 
 	type params struct {
@@ -271,13 +271,13 @@ func (s *Service) wxInit(b baseRequest) error {
 	}
 	dataInJSON, err := json.Marshal(p)
 	if err != nil {
-		return err
+		return "", err
 	}
 	reader := bytes.NewReader(dataInJSON)
 
-	resp, err := http.Post(vars.WechatInitUrl, "application/json", reader)
+	resp, err := http.Post(vars.WechatInitUrl+"?pass_ticket="+pass_ticket, "application/json", reader)
 	if err != nil {
-		return err
+		return "", err
 	}
 	defer resp.Body.Close()
 
@@ -285,9 +285,9 @@ func (s *Service) wxInit(b baseRequest) error {
 
 		body, err := ioutil.ReadAll(resp.Body)
 		if err != nil {
-			return err
+			return "", err
 		}
-		return errors.New(string(body))
+		return "", errors.New(string(body))
 	}
 
 	type initResponse struct {
@@ -296,13 +296,42 @@ func (s *Service) wxInit(b baseRequest) error {
 		User         user         `json:"User"`
 	}
 
-	r := new(initResponse)
-	err = json.NewDecoder(resp.Body).Decode(r)
+	var r initResponse
+	err = json.NewDecoder(resp.Body).Decode(&r)
+	if err != nil {
+		return "", err
+	}
+
+	return r.User.UserName, nil
+}
+
+func (s *Service) notify(b baseRequest, pass_ticket, from, to string) error {
+
+	type params struct {
+		BaseRequest  baseRequest `json:"BaseRequest"`
+		Code         int         `json:"Code"`
+		FromUserName string      `json:"FromUserName"`
+		ToUserName   string      `json:"ToUserName"`
+		ClientMsgId  int         `json:"ClientMsgId"`
+	}
+
+	p := params{
+		BaseRequest:  b,
+		Code:         3,
+		FromUserName: from,
+		ToUserName:   to,
+		ClientMsgId:  int(time.Now().Unix() * 1e4),
+	}
+	dataInJSON, err := json.Marshal(p)
+	if err != nil {
+		return err
+
+	}
+	resp, err := http.Post(vars.WechatNotifyUrl+"?pass_ticket="+pass_ticket, "application/json", bytes.NewReader(dataInJSON))
 	if err != nil {
 		return err
 	}
-
-	s.logger.Printf("I! init response: %v", r)
+	defer resp.Body.Close()
 
 	return nil
 }
@@ -320,6 +349,9 @@ func sendWechatMessage(b baseRequest, pass_ticket, content, from, to string) err
 	type params struct {
 		BaseRequest baseRequest `json:"BaseRequest"`
 		Msg         msg         `json:"Msg"`
+	}
+	if to == "" {
+		to = "filehelper"
 	}
 	p := params{
 		BaseRequest: b,
