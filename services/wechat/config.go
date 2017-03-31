@@ -6,6 +6,7 @@ type Config struct {
 	BaseRequest baseRequest
 	PassTicket  string
 	From        string
+	To          string
 }
 
 func NewConfig() Config {

@@ -28,14 +28,23 @@ func NewService(c Config, l *log.Logger, r *mux.Router) *Service {
 	if err != nil {
 		s.logger.Printf("E! init fail %s", err.Error())
 	}
-	c.From = from
+	groupUsername, err := s.getContact(b, p)
+	if err != nil {
+		s.logger.Printf("E! getContact fail %s", err.Error())
+	}
+	if groupUsername == "" {
+		c.To = "filehelper"
+	} else {
+		c.To = groupUsername
+	}
 	// Doesn't work // FIXME: 2017/3/28
-	err = s.notify(b, p, from, "filehelper")
+	err = s.notify(b, p, from, c.To)
 	if err != nil {
 		s.logger.Printf("E! notify fail %s", err.Error())
 	}
 	c.BaseRequest = b
 	c.PassTicket = p
+	c.From = from
 	s.configValue.Store(c)
 	s.router.HandleFunc("/wechat", ServiceHandler(c))
 

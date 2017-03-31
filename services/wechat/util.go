@@ -185,7 +185,7 @@ Wait:
 		case "201":
 			s.logger.Printf("I! scan success %s", code)
 		case "408":
-			s.logger.Printf("I! timeout %s", code)
+			s.logger.Printf("I! timeout %s, please restart", code)
 		}
 		resp.Body.Close()
 		retry--
@@ -309,6 +309,67 @@ func (s *Service) wxInit(b baseRequest, pass_ticket string) (string, error) {
 	return r.User.UserName, nil
 }
 
+// getContact will return "fregata" group username if group exits and are saved to contact list
+// else return empty string
+func (s *Service) getContact(b baseRequest, pass_ticket string) (string, error) {
+
+	type params struct {
+		BaseRequest baseRequest `json:"BaseRequest"`
+	}
+	p := params{
+		b,
+	}
+	dataInJSON, err := json.Marshal(p)
+	if err != nil {
+		return "", err
+	}
+	resp, err := http.Post(vars.WechatGetContactUrl+"?pass_ticket="+pass_ticket, "application/json", bytes.NewReader(dataInJSON))
+	if err != nil {
+		return "", err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+
+		body, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			return "", err
+		}
+		return "", errors.New(string(body))
+	}
+
+	type getContactResponse struct {
+		BaseResponse baseResponse `json:"BaseResponse"`
+		MemberCount  int          `json:"MemberCount"`
+		MemberList   []user       `json:"MemberList"`
+	}
+	var r getContactResponse
+	err = json.NewDecoder(resp.Body).Decode(&r)
+	if err != nil {
+		return "", err
+	}
+	if r.BaseResponse.Ret != 0 {
+		return "", errors.Errorf("Ret: %d, ErrMsg: %s", r.BaseResponse.Ret, r.BaseResponse.ErrMsg)
+	}
+
+	for _, u := range r.MemberList {
+		if name := strings.ToLower(u.NickName); name == "fregata" {
+			return u.UserName, nil
+		}
+	}
+
+	return "", nil
+}
+
+// batchGetContact try to get 'fregata' group in un saved contact list
+// TODO: 2017/3/31
+func (s *Service) batchGetContact(b baseRequest, pass_ticket string) (string, error) {
+
+	type params struct {
+	}
+	return "", nil
+}
+
 func (s *Service) notify(b baseRequest, pass_ticket, from, to string) error {
 
 	type params struct {
@@ -355,7 +416,6 @@ func (s *Service) notify(b baseRequest, pass_ticket, from, to string) error {
 	if err != nil {
 		return err
 	}
-	s.logger.Printf("I! notify response %+v", r)
 	if r.BaseResponse.Ret != 0 {
 		return errors.Errorf("Ret: %d, ErrMsg: %s", r.BaseResponse.Ret, r.BaseResponse.ErrMsg)
 	}
@@ -376,9 +436,6 @@ func sendWechatMessage(b baseRequest, pass_ticket, content, from, to string) err
 	type params struct {
 		BaseRequest baseRequest `json:"BaseRequest"`
 		Msg         msg         `json:"Msg"`
-	}
-	if to == "" {
-		to = "filehelper"
 	}
 	p := params{
 		BaseRequest: b,
@@ -419,7 +476,6 @@ func sendWechatMessage(b baseRequest, pass_ticket, content, from, to string) err
 	if err != nil {
 		return err
 	}
-	fmt.Printf("I! send message response %+v", r)
 	if r.BaseResponse.Ret != 0 {
 		return errors.Errorf("Ret: %d, ErrMsg: %s", r.BaseResponse.Ret, r.BaseResponse.ErrMsg)
 	}

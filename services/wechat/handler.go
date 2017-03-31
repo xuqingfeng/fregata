@@ -39,11 +39,13 @@ func ServiceHandler(c Config) http.HandlerFunc {
 
 type message struct {
 	Text string `json:"text"`
-	// TODO 'fregata' group
-	To string `json:"to"`
+	To   string `json:"to"`
 }
 
 func sendMessage(c Config, m message) error {
 
+	if m.To == "" {
+		m.To = c.To
+	}
 	return sendWechatMessage(c.BaseRequest, c.PassTicket, m.Text, c.From, m.To)
 }

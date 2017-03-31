@@ -32,6 +32,7 @@ const (
 	WechatQRUrl          = "https://login.weixin.qq.com/qrcode"
 	WechatLoginUrl       = "https://login.weixin.qq.com/cgi-bin/mmwebwx-bin/login"
 	WechatInitUrl        = "https://wx.qq.com/cgi-bin/mmwebwx-bin/webwxinit"
+	WechatGetContactUrl  = "https://wx.qq.com/cgi-bin/mmwebwx-bin/webwxgetcontact"
 	WechatNotifyUrl      = "https://wx.qq.com/cgi-bin/mmwebwx-bin/webwxstatusnotify"
 	WechatSendMessageUrl = "https://wx.qq.com/cgi-bin/mmwebwx-bin/webwxsendmsg"
 )
