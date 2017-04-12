@@ -361,8 +361,8 @@ func (s *Service) getContact(b baseRequest, pass_ticket string) (string, error) 
 	return "", nil
 }
 
-// batchGetContact try to get 'fregata' group in un saved contact list
-// TODO: 2017/3/31
+// batchGetContact try to get 'fregata' group in un-saved contact list
+// TODO: 2017/3/31 https://github.com/HalfdogStudio/wechat-user-bot/issues/17
 func (s *Service) batchGetContact(b baseRequest, pass_ticket string) (string, error) {
 
 	type params struct {

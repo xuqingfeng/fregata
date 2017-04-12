@@ -13,3 +13,7 @@ make test
 ```
 
 ### Docker
+
+```bash
+docker run -d -p 2017:2017 -v fregata.conf:/etc/fregata/fregata.conf --name fregata xuqingfeng/fregata 
+```

@@ -19,7 +19,7 @@ func NewConfig() Config {
 // Validate check if OS is macOS
 func (c Config) Validate() error {
 
-	if runtime.GOOS != "darwin" {
+	if c.Enabled && runtime.GOOS != "darwin" {
 		return errors.New("os is not macOS")
 	}
 

@@ -1,13 +1,14 @@
 FROM alpine:3.5
 
-MAINTAINER https://github.com/xuqingfeng
+RUN apk --update add ca-certificates
 
-COPY out/fregated /usr/local/bin/fregated
-COPY out/fregate /usr/local/bin/fregate
-COPY etc/fregate.conf /etc/fregate.conf
+COPY out/fregatad-linux-amd64 /usr/local/bin/fregatad
+COPY out/fregata-linux-amd64 /usr/local/bin/fregata
+
+VOLUME /etc/fregata
 
 EXPOSE 2017
 
-ENTRYPOINT ["/usr/local/bin/fregated"]
-CMD ["-config", "/etc/fregate.conf"]
+ENTRYPOINT ["/usr/local/bin/fregatad"]
+CMD ["-config", "/etc/fregata/fregata.conf"]
 

@@ -77,6 +77,8 @@ func (m *Main) Run(args ...string) error {
 		if err != nil {
 			return err
 		}
+	} else {
+		flag.Usage()
 	}
 
 	return nil
