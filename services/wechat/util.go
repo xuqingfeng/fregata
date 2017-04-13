@@ -72,7 +72,7 @@ func (s *Service) getUUID() (string, error) {
 	re := regexp.MustCompile(`window.QRLogin.code = (\d+); window.QRLogin.uuid = "(\S+?)";`)
 	matches := re.FindStringSubmatch(string(body))
 	if code := matches[1]; code != "200" {
-		return "", errors.Errorf("get uuid status code: %d", code)
+		return "", errors.Errorf("get uuid status code: %s", code)
 	} else if uuid := matches[2]; uuid == "" {
 		return "", errors.New("uuid empty")
 	}
@@ -108,7 +108,8 @@ func (s *Service) getQR(uuid string) error {
 
 	// TODO: 17/3/20 output QR code in terminal
 	qrcodeUrl := fmt.Sprintf("%s/%s", vars.WechatQRUrl, uuid)
-	s.logger.Printf("I! go to %s; scan the QR code and login\n", qrcodeUrl)
+	// always print this message
+	fmt.Printf("Go to %s; scan the QR code and login\n", qrcodeUrl)
 
 	//code, err := qrcode.New(qrcodeUrl, qrcode.Medium)
 	//if err != nil {
@@ -160,7 +161,7 @@ Wait:
 		if retry <= 0 {
 			break
 		}
-		resp, err := http.Get(fmt.Sprintf("%s?tip=%d&uuid=%s&_=%s", vars.WechatLoginUrl, tip, uuid, time.Now().Unix()))
+		resp, err := http.Get(fmt.Sprintf("%s?tip=%d&uuid=%s&_=%d", vars.WechatLoginUrl, tip, uuid, time.Now().Unix()))
 		if err != nil {
 			return "", err
 		}

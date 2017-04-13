@@ -4,8 +4,7 @@ RUN apk --update add ca-certificates
 
 COPY out/fregatad-linux-amd64 /usr/local/bin/fregatad
 COPY out/fregata-linux-amd64 /usr/local/bin/fregata
-
-VOLUME /etc/fregata
+COPY etc/fregata.conf /etc/fregata/fregata.conf
 
 EXPOSE 2017
 
