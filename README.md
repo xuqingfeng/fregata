@@ -4,7 +4,24 @@
 
 ### Install
 
+```bash
+go get github.com/xuqingfeng/fregata/cmd/fregata
+go get github.com/xuqingfeng/fregata/cmd/fregatad
+```
+
+### Supported Services
+
+- macos
+- slack
+- SMTP
+- telegram
+- wechat
+
 ### Usage
+
+- prepare a config file
+- start `fregata daemon`
+- send messages to the API endpoints
 
 ### Test
 
