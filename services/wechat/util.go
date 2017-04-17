@@ -8,6 +8,7 @@ import (
 	"encoding/xml"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"math/rand"
 	"net/http"
 	"net/url"
@@ -109,7 +110,8 @@ func (s *Service) getQR(uuid string) error {
 	// TODO: 17/3/20 output QR code in terminal
 	qrcodeUrl := fmt.Sprintf("%s/%s", vars.WechatQRUrl, uuid)
 	// always print this message
-	fmt.Printf("Go to %s; scan the QR code and login\n", qrcodeUrl)
+	//fmt.Printf("Go to %s; scan the QR code and login\n", qrcodeUrl)
+	log.Printf("[wechat] go to %s; scan the QR code and login\n", qrcodeUrl)
 
 	//code, err := qrcode.New(qrcodeUrl, qrcode.Medium)
 	//if err != nil {
