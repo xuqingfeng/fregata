@@ -1,5 +1,9 @@
 # macos
 
+**API endpoint**
+
+POST `/fregata/v1/macos`
+
 **input params:**
 
 ```json

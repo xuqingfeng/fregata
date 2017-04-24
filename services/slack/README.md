@@ -1,5 +1,9 @@
 # slack
 
+**API endpoint**
+
+POST `/fregata/v1/slack`
+
 **input params**
 
 ```json

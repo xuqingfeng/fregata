@@ -1,5 +1,9 @@
 # telegram
 
+**API endpoint**
+
+POST `/fregata/v1/telegram`
+
 **input params**
 
 ```json

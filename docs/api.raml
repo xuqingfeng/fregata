@@ -1,0 +1,100 @@
+#%RAML 1.0
+---
+title: fregata
+baseUri: http://example.com/fregata/{version}
+version: v1
+
+/macos:
+  post:
+    description: Send messages to mac os
+    body:
+      application/json:
+        example: |
+          {"text": "sent via fregata", "title": "fregata", "subtitle": "sub", "sound": "Hero"}
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {"success": true}
+      400:
+        body:
+          application/json:
+            example: |
+              {"success": false, "message": "error message"}
+
+/slack:
+  post:
+    description: Send messages to slack
+    body:
+      application/json:
+        example: |
+          {"text": "sent via fregata", "channel": "#fregata", "icon_emoji": ":modal:"}
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {"success": true}
+      400:
+        body:
+          application/json:
+            example: |
+              {"success": false, "message": "error message"}
+
+/smtp:
+  post:
+    description: Send messages to smtp server
+    body:
+      application/json:
+        example: |
+          {"from": "from@example.com", "to": ["to@example.com"], "subject": "sent via fregata", "body": "mail body"}
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {"success": true}
+      400:
+        body:
+          application/json:
+            example: |
+              {"success": false, "message": "error message"}
+
+/telegram:
+  post:
+    description: Send messages to telegram
+    body:
+      application/json:
+        example: |
+          {"text": "sent via fregata", "chat_id": "YOUR_CHAT_ID_WITH_BOT", "parse_mode": "Markdown"}
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {"success": true}
+      400:
+        body:
+          application/json:
+            example: |
+              {"success": false, "message": "error message"}
+
+/wechat:
+  post:
+    description: Send messages to wechat
+    body:
+      application/json:
+        example: |
+          {"text": "sent via fregata", "to": "fregata"}
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {"success": true}
+      400:
+        body:
+          application/json:
+            example: |
+              {"success": false, "message": "error message"}

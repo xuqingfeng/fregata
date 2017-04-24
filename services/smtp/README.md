@@ -1,4 +1,8 @@
-# SMTP
+# smtp
+
+**API endpoint**
+
+POST `/fregata/v1/smtp`
 
 **input params**
 

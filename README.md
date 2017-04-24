@@ -13,7 +13,7 @@ go get github.com/xuqingfeng/fregata/cmd/fregatad
 
 - macos
 - slack
-- SMTP
+- smtp
 - telegram
 - wechat
 
