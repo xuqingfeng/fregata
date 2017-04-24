@@ -5,10 +5,10 @@ fmt:
 	go fmt ./...
 
 build-linux-64: fmt
-	cd cmd/fregata && GOOS=linux GOARCH=amd64 go build -o ../../out/fregata-linux-amd64 && cd - && cd cmd/fregatad && GOOS=linux GOARCH=amd64 go build -o ../../out/fregatad-linux-amd64
+	GOOS=linux GOARCH=amd64 go build -o out/fregata-linux-amd64 cmd/fregata/main.go && GOOS=linux GOARCH=amd64 go build -o out/fregatad-linux-amd64 cmd/fregatad/main.go
 
 build: fmt
-	cd cmd/fregata && go build -o ../../out/fregata && cd - && cd cmd/fregatad && go build -o ../../out/fregatad
+	go build -o out/fregata cmd/fregata/main.go && go build -o ../../out/fregatad cmd/fregatad/main.go
 
 run: build
 	./out/fregatad -config ./out/fregata.conf
