@@ -18,7 +18,7 @@ curl -X POST \
   -d '{"text": "😃", "to": "filehelper"}'
 ```
 
-<img src="https://raw.githubusercontent.com/xuqingfeng/fregata/master/examples/wechat.png" alt="wechat" style="max-width: 50%;"/>
+<img src="https://raw.githubusercontent.com/xuqingfeng/fregata/master/examples/wechat.png" alt="wechat" width=300/>
 
 ## telegram
 
@@ -29,4 +29,4 @@ curl -X POST \
   -d '{"text": "*fregata*\n```go\nfmt.Println(\"Hello World.\")\n```"}'
 ```
 
-<img src="https://raw.githubusercontent.com/xuqingfeng/fregata/master/examples/telegram.png" alt="telegram" style="max-width: 50%;"/>
+<img src="https://raw.githubusercontent.com/xuqingfeng/fregata/master/examples/telegram.png" alt="telegram" width=300/>
