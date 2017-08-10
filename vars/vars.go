@@ -3,20 +3,20 @@ package vars
 
 const (
 	/*
-	   App
-	*/
+	 * App
+	 */
 	Name       = "fregata"
 	DaemonName = "fregatad"
-	Version    = "0.1.0"
+	Version    = "0.0.1"
 
 	/*
-	   API
-	*/
+	 * API
+	 */
 	APIBasePath = "/" + Name + "/v1"
 
 	/*
-	   Service
-	*/
+	 * Service
+	 */
 	// slack
 	SlackDefaultUsername = Name
 
@@ -24,7 +24,6 @@ const (
 	TelegramDefaultURL = "https://api.telegram.org/bot"
 
 	// wechat
-	//WechatAppID   = "wxeb7ec651dd0aefa9"
 	WechatAppID          = "wx782c26e4c19acffb"
 	WechatFun            = "new"
 	WechatLang           = "zh_CN"
