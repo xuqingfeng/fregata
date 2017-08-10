@@ -35,5 +35,5 @@ make test
 ### Docker
 
 ```bash
-docker run -d -p 2017:2017 -v `pwd`/fregata.conf:/etc/fregata/fregata.conf --name fregata xuqingfeng/fregata
+docker run --rm -p 2017:2017 -v `pwd`/fregata.conf:/etc/fregata/fregata.conf --name fregata xuqingfeng/fregata
 ```
