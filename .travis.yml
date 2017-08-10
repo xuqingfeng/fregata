@@ -11,14 +11,9 @@ services:
 os:
   - linux
 
-before_install:
-  - docker version
-
 script:
   - make test
   - make build-all
-
-after_script:
   - docker build -t xuqingfeng/fregata .
 
 deploy:
