@@ -12,6 +12,8 @@ go get github.com/xuqingfeng/fregata/cmd/fregatad
 
 ### Supported Services
 
+[examples](./examples)
+
 - slack
 - telegram
 - wechat
