@@ -48,7 +48,11 @@ func NewService(c Config, l *log.Logger, r *mux.Router) *Service {
 	s.configValue.Store(c)
 	s.router.HandleFunc("/wechat", ServiceHandler(c))
 
-	s.logger.Println("I! service started")
+	if err != nil {
+		s.logger.Println("I! service failed")
+	} else {
+		s.logger.Println("I! service started")
+	}
 
 	return s
 }

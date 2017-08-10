@@ -1,5 +1,7 @@
 FROM ubuntu:trusty
 
+RUN update-ca-certificates
+
 COPY out/fregata-linux-amd64 /usr/local/bin/fregata
 COPY out/fregatad-linux-amd64 /usr/local/bin/fregatad
 COPY etc/fregata.conf /etc/fregata/fregata.conf
