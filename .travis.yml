@@ -1,12 +1,25 @@
+sudo: required
+
 language: go
 go:
-- 1.8
-- tip
+  - 1.8
+  - tip
+
+services:
+  - docker
+
 os:
-- linux
+  - linux
+
+before_install:
+  - docker version
+
 script:
-- make test
-- make build-all
+  - make test
+  - make build-all
+
+after_script:
+  - docker build -t xuqingfeng/fregata .
 
 deploy:
   provider: releases
@@ -18,3 +31,9 @@ deploy:
   on:
     repo: xuqingfeng/fregata
     tags: true
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+      docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+      docker push xuqingfeng/fregata;
+    fi

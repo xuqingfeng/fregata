@@ -10,4 +10,3 @@ EXPOSE 2017
 
 ENTRYPOINT ["/usr/local/bin/fregatad"]
 CMD ["-config", "/etc/fregata/fregata.conf"]
-
