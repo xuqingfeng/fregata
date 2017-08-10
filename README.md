@@ -20,9 +20,9 @@ go get github.com/xuqingfeng/fregata/cmd/fregatad
 
 ### Usage
 
-- prepare a config file
-- start `fregata daemon`
-- send messages to the API endpoints
+- prepare [fregata.conf](./etc/fregata.conf)
+- `fregatad -conf fregata.conf`
+- send messages to [API endpoints](https://xuqingfeng.github.io/fregata/api.html)
 
 ### Test
 
