@@ -1,6 +1,4 @@
-FROM alpine:3.6
-
-RUN apk --update --no-cache add ca-certificates
+FROM ubuntu:trusty
 
 COPY out/fregata-linux-amd64 /usr/local/bin/fregata
 COPY out/fregatad-linux-amd64 /usr/local/bin/fregatad

@@ -21,7 +21,7 @@ go get github.com/xuqingfeng/fregata/cmd/fregatad
 ### Usage
 
 - prepare [fregata.conf](./etc/fregata.conf)
-- `fregatad -conf fregata.conf`
+- `fregatad -config fregata.conf`
 - send messages to [API endpoints](https://xuqingfeng.github.io/fregata/api.html)
 
 ### Test
