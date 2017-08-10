@@ -50,14 +50,6 @@
 			"notests": true
 		},
 		{
-			"importpath": "github.com/skip2/go-qrcode",
-			"repository": "https://github.com/skip2/go-qrcode",
-			"vcs": "git",
-			"revision": "cf02323edc040f5263d08b45a60bc8abdc3bde18",
-			"branch": "master",
-			"notests": true
-		},
-		{
 			"importpath": "gopkg.in/alexcesaro/quotedprintable.v3",
 			"repository": "https://gopkg.in/alexcesaro/quotedprintable.v3",
 			"vcs": "git",

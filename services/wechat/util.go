@@ -8,7 +8,6 @@ import (
 	"encoding/xml"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"math/rand"
 	"net/http"
 	"net/url"
@@ -18,7 +17,6 @@ import (
 	"time"
 
 	"github.com/pkg/errors"
-	"github.com/skip2/go-qrcode"
 	"github.com/xuqingfeng/fregata/vars"
 )
 
@@ -83,42 +81,11 @@ func (s *Service) getUUID() (string, error) {
 
 func (s *Service) getQR(uuid string) error {
 
-	//params := url.Values{}
-	//params.Set("t", "webwx")
-	//params.Set("_", strconv.FormatInt(time.Now().Unix(), 10))
-	//
-	//s.logger.Printf("I! timestamp: %s", params.Get("_"))
-
-	//resp, err := http.Post(vars.WechatQRUrl+"/"+uuid, "application/x-www-form-urlencoded", strings.NewReader(params.Encode()))
-	//resp, err := http.Get(vars.WechatQRUrl+"/"+uuid)
-	//if err != nil {
-	//    return err
-	//}
-	//defer resp.Body.Close()
-	//
-	//body, err := ioutil.ReadAll(resp.Body)
-	//if err != nil {
-	//    return err
-	//}
-
-	//qr, err := qrcode.Encode(vars.WechatQRUrl+"/"+uuid, qrcode.Medium, 256)
-	//err := qrcode.WriteFile(vars.WechatQRUrl+"/"+uuid, qrcode.Medium, 256, "wechat_qr.png")
-	//if err != nil {
-	//	return err
-	//}
-
 	// TODO: 17/3/20 output QR code in terminal
 	qrcodeUrl := fmt.Sprintf("%s/%s", vars.WechatQRUrl, uuid)
 	// always print this message
-	//fmt.Printf("Go to %s; scan the QR code and login\n", qrcodeUrl)
-	log.Printf("[wechat] go to %s; scan the QR code and login\n", qrcodeUrl)
+	fmt.Printf("[wechat] go to %s, scan the QR code and login.\n", qrcodeUrl)
 
-	//code, err := qrcode.New(qrcodeUrl, qrcode.Medium)
-	//if err != nil {
-	//	return err
-	//}
-	//
-	//showQRCode(code)
 	return nil
 }
 
@@ -126,32 +93,6 @@ const (
 	fg = "\033[48;5;2m  \033[0m"
 	bg = "\033[48;5;7m  \033[0m"
 )
-
-// https://github.com/KevinGong2013/ggbot/blob/master/uuidprocessor/processor.go
-func showQRCode(code *qrcode.QRCode) {
-
-	fmt.Println()
-	for ir, row := range code.Bitmap() {
-		lr := len(row)
-		if ir == 0 || ir == 1 || ir == 2 ||
-			ir == lr-1 || ir == lr-2 || ir == lr-3 {
-			continue
-		}
-		for ic, col := range row {
-			lc := len(code.Bitmap())
-			if ic == 0 || ic == 1 || ic == 2 ||
-				ic == lc-1 || ic == lc-2 || ic == lc-3 {
-				continue
-			}
-			if col {
-				fmt.Print(fg)
-			} else {
-				fmt.Print(bg)
-			}
-		}
-		fmt.Println()
-	}
-}
 
 // waitForLogin wait user scan QR code and login
 func (s *Service) waitForLogin(uuid string, tip int) (string, error) {

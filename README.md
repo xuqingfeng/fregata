@@ -12,11 +12,11 @@ go get github.com/xuqingfeng/fregata/cmd/fregatad
 
 ### Supported Services
 
-- macos
 - slack
-- smtp
 - telegram
 - wechat
+- smtp
+- macos
 
 ### Usage
 
