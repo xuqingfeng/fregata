@@ -42,11 +42,13 @@ func New(c *Config, logService logging.Interface) (*Server, error) {
 	s.Logger.Printf("I! %s started\n", vars.DaemonName)
 	s.router.HandleFunc("/ping", ServiceHandler)
 
-	s.appendSlackService()
-	s.appendMacosService()
-	s.appendTelegramService()
-	s.appendWechatService()
-	s.appendSMTPService()
+	go func() {
+		s.appendSlackService()
+		s.appendMacosService()
+		s.appendTelegramService()
+		s.appendSMTPService()
+		s.appendWechatService()
+	}()
 
 	if err := http.ListenAndServe(":2017", router); err != nil {
 		return nil, fmt.Errorf("%s", err)
