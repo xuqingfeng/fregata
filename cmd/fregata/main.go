@@ -9,24 +9,25 @@ import (
 )
 
 var (
-	usage = `usage: ` + vars.Name + `[flags]
+	version string
+	usage   = `usage: ` + vars.Name + `[flags]
 	-version
 			Output version number.
 	`
 
-	version bool
+	versionFlag bool
 )
 
 func main() {
 
-	flag.BoolVar(&version, "version", false, "")
+	flag.BoolVar(&versionFlag, "version", false, "")
 	flag.Usage = func() {
 		fmt.Fprintln(os.Stdout, usage)
 	}
 	flag.Parse()
 
-	if version {
-		fmt.Fprintf(os.Stdout, vars.Name+": %s", vars.Version+"\n")
+	if versionFlag {
+		fmt.Fprintf(os.Stdout, vars.Name+": %s", version+"\n")
 		os.Exit(0)
 	}
 

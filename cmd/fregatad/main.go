@@ -15,7 +15,8 @@ import (
 )
 
 var (
-	usage = `usage: ` + vars.DaemonName + ` [flags]
+	version string
+	usage   = `usage: ` + vars.DaemonName + ` [flags]
     -version
                     Output version number.
     -config <path>
@@ -61,7 +62,7 @@ func (m *Main) Run(args ...string) error {
 	flag.Parse()
 
 	if o.version {
-		fmt.Fprintf(os.Stdout, vars.DaemonName+": %s", vars.Version+"\n")
+		fmt.Fprintf(os.Stdout, vars.DaemonName+": %s", version+"\n")
 		os.Exit(0)
 	}
 	if o.config != "" {

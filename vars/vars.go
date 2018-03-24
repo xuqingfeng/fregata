@@ -7,7 +7,6 @@ const (
 	 */
 	Name       = "fregata"
 	DaemonName = "fregatad"
-	Version    = "v0.0.3"
 
 	/*
 	 * API
