@@ -84,7 +84,7 @@ func (s *Service) getQR(uuid string) error {
 	// TODO: 17/3/20 output QR code in terminal
 	qrcodeUrl := fmt.Sprintf("%s/%s", vars.WechatQRUrl, uuid)
 	// always print this message
-	fmt.Printf("[wechat] go to %s, scan the QR code and login.\n", qrcodeUrl)
+	fmt.Printf("[wechat] scan the QR code(%s) and login.\n", qrcodeUrl)
 
 	return nil
 }

@@ -103,7 +103,6 @@ func (s *Service) NewStaticLevelWriter(l Level) io.Writer {
 	return wlog.NewStaticLevelWriter(s.f, wlog.Level(l))
 }
 
-// ?
 type nopCloser struct {
 	f io.Writer
 }
