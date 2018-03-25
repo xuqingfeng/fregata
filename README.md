@@ -6,8 +6,7 @@
 ### Install
 
 ```bash
-go get github.com/xuqingfeng/fregata/cmd/fregata
-go get github.com/xuqingfeng/fregata/cmd/fregatad
+go get github.com/xuqingfeng/fregata/cmd/...
 ```
 
 ### Supported Services
@@ -22,8 +21,8 @@ go get github.com/xuqingfeng/fregata/cmd/fregatad
 
 ### Usage
 
-- prepare [fregata.conf](./etc/fregata.conf)
-- `fregatad -config fregata.conf`
+- prepare a [fregata.conf](./etc/fregata.conf)
+- run `fregatad -config fregata.conf`
 - send messages to [API endpoints](https://xuqingfeng.github.io/fregata/api.html)
 
 ### Test

@@ -15,7 +15,7 @@ import (
 )
 
 var (
-	version string
+	version = "master"
 	usage   = `usage: ` + vars.DaemonName + ` [flags]
     -version
                     Output version number.

@@ -9,7 +9,7 @@ import (
 )
 
 var (
-	version string
+	version = "master"
 	usage   = `usage: ` + vars.Name + `[flags]
 	-version
 			Output version number.
