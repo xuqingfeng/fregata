@@ -4,6 +4,16 @@ title: fregata
 baseUri: http://example.com/fregata/{version}
 version: v1
 
+/ping:
+  get:
+    description: health check api
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {"success":true,"message":"pong"}
+
 /macos:
   post:
     description: Send messages to mac os
