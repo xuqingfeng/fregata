@@ -1,0 +1,11 @@
+[Unit]
+Description=fregata
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/fregatad -config /etc/fregata/fregata.conf
+Restart=on-failure
+ExecReload=/bin/kill -s HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target
