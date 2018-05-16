@@ -2,6 +2,7 @@
 package server
 
 import (
+	"github.com/xuqingfeng/fregata/http"
 	"github.com/xuqingfeng/fregata/logging"
 	"github.com/xuqingfeng/fregata/services/macos"
 	"github.com/xuqingfeng/fregata/services/slack"
@@ -11,6 +12,7 @@ import (
 )
 
 type Config struct {
+	HTTP     http.Config     `toml:"http"`
 	Logging  logging.Config  `toml:"logging"`
 	Slack    slack.Config    `toml:"slack"`
 	Macos    macos.Config    `toml:"macos"`
@@ -22,6 +24,7 @@ type Config struct {
 func NewConfig() *Config {
 
 	c := &Config{}
+	c.HTTP = http.NewConfig()
 	c.Logging = logging.NewConfig()
 	c.Slack = slack.NewConfig()
 	c.Macos = macos.NewConfig()
