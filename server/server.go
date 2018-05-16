@@ -50,7 +50,7 @@ func New(c *Config, logService logging.Interface) (*Server, error) {
 		s.appendWechatService()
 	}()
 
-	if err := http.ListenAndServe(":2017", router); err != nil {
+	if err := http.ListenAndServe(c.HTTP.BindAddress, router); err != nil {
 		return nil, fmt.Errorf("%s", err)
 	}
 
