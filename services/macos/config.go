@@ -1,4 +1,4 @@
-// Package macos provide functionality for macOS.
+// Package macos is used to send notifications to macOS
 package macos
 
 import (

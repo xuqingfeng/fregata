@@ -1,4 +1,4 @@
-// Package smtp provide service for sending email.
+// Package smtp is used to send emails through SMTP
 package smtp
 
 import "net/url"
