@@ -1,4 +1,4 @@
-// Package slack provide service for sending message to slack.
+// Package slack is used to send Slack messages
 package slack
 
 import (

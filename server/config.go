@@ -8,6 +8,7 @@ import (
 	"github.com/xuqingfeng/fregata/services/slack"
 	"github.com/xuqingfeng/fregata/services/smtp"
 	"github.com/xuqingfeng/fregata/services/telegram"
+	"github.com/xuqingfeng/fregata/services/twilio"
 	"github.com/xuqingfeng/fregata/services/wechat"
 )
 
@@ -17,6 +18,7 @@ type Config struct {
 	Slack    slack.Config    `toml:"slack"`
 	Macos    macos.Config    `toml:"macos"`
 	Telegram telegram.Config `toml:"telegram"`
+	Twilio   twilio.Config   `toml:"twilio"`
 	Wechat   wechat.Config   `toml:"wechat"`
 	SMTP     smtp.Config     `toml:"smtp"`
 }
@@ -29,6 +31,7 @@ func NewConfig() *Config {
 	c.Slack = slack.NewConfig()
 	c.Macos = macos.NewConfig()
 	c.Telegram = telegram.NewConfig()
+	c.Twilio = twilio.NewConfig()
 	c.Wechat = wechat.NewConfig()
 	c.SMTP = smtp.NewConfig()
 
@@ -45,6 +48,9 @@ func (c *Config) Validate() error {
 		return err
 	}
 	if err := c.Telegram.Validate(); err != nil {
+		return err
+	}
+	if err := c.Twilio.Validate(); err != nil {
 		return err
 	}
 	if err := c.Wechat.Validate(); err != nil {

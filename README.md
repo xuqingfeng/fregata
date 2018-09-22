@@ -15,6 +15,7 @@ go get github.com/xuqingfeng/fregata/cmd/...
 
 - slack
 - telegram
+- twilio
 - wechat
 - smtp
 - macos

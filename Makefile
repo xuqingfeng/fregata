@@ -26,3 +26,6 @@ build: fmt
 
 run: build
 	./out/fregatad -config ./out/fregata.conf
+
+update-docs:
+	raml2html docs/api.raml > docs/api.html

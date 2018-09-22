@@ -11,6 +11,7 @@ import (
 	"github.com/xuqingfeng/fregata/services/slack"
 	"github.com/xuqingfeng/fregata/services/smtp"
 	"github.com/xuqingfeng/fregata/services/telegram"
+	"github.com/xuqingfeng/fregata/services/twilio"
 	"github.com/xuqingfeng/fregata/services/wechat"
 	"github.com/xuqingfeng/fregata/vars"
 )
@@ -42,11 +43,23 @@ func New(c *Config, logService logging.Interface) (*Server, error) {
 	s.Logger.Printf("I! %s started\n", vars.DaemonName)
 	s.router.HandleFunc("/ping", ServiceHandler)
 
+	// start services in parallel
 	go func() {
 		s.appendSlackService()
+	}()
+	go func() {
 		s.appendMacosService()
+	}()
+	go func() {
 		s.appendTelegramService()
+	}()
+	go func() {
+		s.appendTwilioService()
+	}()
+	go func() {
 		s.appendSMTPService()
+	}()
+	go func() {
 		s.appendWechatService()
 	}()
 
@@ -84,6 +97,16 @@ func (s *Server) appendTelegramService() {
 		l := s.LogService.NewLogger("[telegram] ", log.LstdFlags)
 		r := s.router
 		telegram.NewService(c, l, r)
+	}
+}
+
+func (s *Server) appendTwilioService() {
+
+	c := s.config.Twilio
+	if c.Enabled {
+		l := s.LogService.NewLogger("[twilio] ", log.LstdFlags)
+		r := s.router
+		twilio.NewService(c, l, r)
 	}
 }
 

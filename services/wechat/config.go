@@ -1,4 +1,4 @@
-// Package wechat provide functionality for wechat.
+// Package wechat is used to send WeChat messages
 package wechat
 
 type Config struct {

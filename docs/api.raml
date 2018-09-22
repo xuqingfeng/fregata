@@ -16,7 +16,7 @@ version: v1
 
 /macos:
   post:
-    description: Send messages to mac os
+    description: Send messages through macOS
     body:
       application/json:
         example: |
@@ -35,7 +35,7 @@ version: v1
 
 /slack:
   post:
-    description: Send messages to slack
+    description: Send messages through slack
     body:
       application/json:
         example: |
@@ -54,7 +54,7 @@ version: v1
 
 /smtp:
   post:
-    description: Send messages to smtp server
+    description: Send messages through SMTP server
     body:
       application/json:
         example: |
@@ -73,7 +73,7 @@ version: v1
 
 /telegram:
   post:
-    description: Send messages to telegram
+    description: Send messages through telegram
     body:
       application/json:
         example: |
@@ -90,9 +90,28 @@ version: v1
             example: |
               {"success": false, "message": "error message"}
 
+/twilio:
+  post:
+    description: Send messages through twilio
+    body:
+      application/json:
+        example: |
+          {"text": "sent via fregata", "to": "+8612345678901"}
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {"success": true}
+      400:
+        body:
+          application/json:
+            example: |
+              {"success": false, "message": "error message"}
+
 /wechat:
   post:
-    description: Send messages to wechat
+    description: Send messages through wechat
     body:
       application/json:
         example: |
