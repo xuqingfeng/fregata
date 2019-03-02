@@ -25,7 +25,7 @@ build: fmt
 	go build -ldflags "-w -s -X main.version=${VERSION}" -o out/fregatad cmd/fregatad/main.go
 
 run: build
-	./out/fregatad -config ./out/fregata.conf
+	./out/fregatad -config ./out/fregatad.conf
 
 update-docs:
 	raml2html docs/api.raml > docs/api.html

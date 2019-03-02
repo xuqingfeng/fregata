@@ -1,9 +1,9 @@
 [Unit]
-Description=fregata
+Description=fregatad
 After=network.target
 
 [Service]
-ExecStart=/usr/local/bin/fregatad -config /etc/fregata/fregata.conf
+ExecStart=/usr/local/bin/fregatad -config /etc/fregata/fregatad.conf
 Restart=on-failure
 ExecReload=/bin/kill -s HUP $MAINPID
 
