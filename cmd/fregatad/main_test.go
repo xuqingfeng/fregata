@@ -9,8 +9,8 @@ func TestParseConfig(t *testing.T) {
 		shouldErr bool
 	}{
 		{"", true},
-		{"testdata/fregata.good.conf", false},
-		{"testdata/fregata.bad.conf", true},
+		{"testdata/fregatad.good.conf", false},
+		{"testdata/fregatad.bad.conf", true},
 	}
 
 	for i, test := range tests {
