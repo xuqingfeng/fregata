@@ -1,9 +1,7 @@
-FROM ubuntu:trusty
+FROM alpine:latest
 
-RUN apt-get update && \
-    apt-get install -y ca-certificates && \
-    update-ca-certificates && \
-    apt-get clean
+RUN apk add --update-cache --no-cache ca-certificates && \
+    update-ca-certificates
 
 COPY out/fregata-linux-amd64 /usr/local/bin/fregata
 COPY out/fregatad-linux-amd64 /usr/local/bin/fregatad
