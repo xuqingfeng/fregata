@@ -20,7 +20,7 @@ version: v1
     body:
       application/json:
         example: |
-          {"text": "sent via fregata", "title": "fregata", "subtitle": "sub", "sound": "Hero"}
+          {"message": "sent via fregata", "title": "fregata", "subtitle": "sub", "sound": "Hero"}
     responses:
       200:
         body:
@@ -39,7 +39,7 @@ version: v1
     body:
       application/json:
         example: |
-          {"text": "sent via fregata", "channel": "#fregata", "icon_emoji": ":modal:"}
+          {"message": "sent via fregata", "channel": "#fregata", "icon_emoji": ":modal:"}
     responses:
       200:
         body:
@@ -77,7 +77,7 @@ version: v1
     body:
       application/json:
         example: |
-          {"text": "sent via fregata", "chat_id": "YOUR_CHAT_ID_WITH_BOT", "parse_mode": "Markdown"}
+          {"message": "sent via fregata", "chat_id": "YOUR_CHAT_ID_WITH_BOT", "parse_mode": "Markdown"}
     responses:
       200:
         body:
@@ -96,7 +96,7 @@ version: v1
     body:
       application/json:
         example: |
-          {"text": "sent via fregata", "to": "+8612345678901"}
+          {"message": "sent via fregata", "to": "+8612345678901"}
     responses:
       200:
         body:
@@ -115,7 +115,7 @@ version: v1
     body:
       application/json:
         example: |
-          {"text": "sent via fregata", "to": "fregata"}
+          {"message": "sent via fregata", "to": "fregata"}
     responses:
       200:
         body:

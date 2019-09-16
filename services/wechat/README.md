@@ -8,7 +8,7 @@ POST `/fregata/v1/wechat`
 
 ```json
 {
-  "text": "message",
+  "message": "message",
   "to": "username"
 }
 ```

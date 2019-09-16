@@ -38,8 +38,8 @@ func ServiceHandler(c Config) http.HandlerFunc {
 }
 
 type message struct {
-	Text string `json:"text"`
-	To   string `json:"to"`
+	Message string `json:"message"`
+	To      string `json:"to"`
 }
 
 func sendMessage(c Config, m message) error {
@@ -47,5 +47,5 @@ func sendMessage(c Config, m message) error {
 	if m.To == "" {
 		m.To = c.To
 	}
-	return sendWechatMessage(c.BaseRequest, c.PassTicket, m.Text, c.From, m.To)
+	return sendWechatMessage(c.BaseRequest, c.PassTicket, m.Message, c.From, m.To)
 }

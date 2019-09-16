@@ -41,9 +41,9 @@ func ServiceHandler(c Config) http.HandlerFunc {
 }
 
 type message struct {
-	From string `json:"from"`
-	Text string `json:"text"`
-	To   string `json:"to"`
+	From    string `json:"from"`
+	Message string `json:"message"`
+	To      string `json:"to"`
 }
 
 func sendMessage(c Config, m message) error {
@@ -55,7 +55,7 @@ func sendMessage(c Config, m message) error {
 	formValues := url.Values{}
 	formValues.Set("From", m.From)
 	formValues.Set("To", m.To)
-	formValues.Set("Body", m.Text)
+	formValues.Set("Body", m.Message)
 	req, err := http.NewRequest("POST", "https://api.twilio.com/2010-04-01/Accounts/"+c.AccountSid+"/Messages.json", strings.NewReader(formValues.Encode()))
 	if err != nil {
 		return err
