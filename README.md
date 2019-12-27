@@ -22,9 +22,9 @@ go get github.com/xuqingfeng/fregata/cmd/...
 
 ### Usage
 
-- prepare a [fregatad.conf](./etc/fregatad.conf)
-- run `fregatad -config fregatad.conf`
-- send messages to [API endpoints](https://xuqingfeng.github.io/fregata/api.html)
+- [fregata.conf](./etc/fregata.conf)
+- `fregata -config fregata.conf`
+- invoke [API](https://xuqingfeng.github.io/fregata/api.html)
 
 ### Test
 
@@ -35,5 +35,5 @@ make test
 ### Docker
 
 ```bash
-docker run --rm -p 2017:2017 -v `pwd`/fregatad.conf:/etc/fregata/fregatad.conf --name fregata xuqingfeng/fregata
+docker run --rm -p 2017:2017 -v `pwd`/fregata.conf:/etc/fregata/fregata.conf --name fregata xuqingfeng/fregata
 ```
