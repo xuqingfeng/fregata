@@ -19,9 +19,9 @@ func TestSendMessage(t *testing.T) {
 		m         message
 		shouldErr bool
 	}{
-		{Config{URL: "https://test.test"}, message{Text: "test"}, true},
-		{Config{URL: "https://example.com"}, message{Text: "test"}, false},
-		{Config{URL: testServer.URL, Channel: "test"}, message{Text: "test"}, false},
+		{Config{URL: "https://test.test"}, message{Message: "test"}, true},
+		{Config{URL: "https://example.com"}, message{Message: "test"}, false},
+		{Config{URL: testServer.URL, Channel: "test"}, message{Message: "test"}, false},
 	}
 
 	for i, test := range tests {

@@ -8,7 +8,7 @@ POST `/fregata/v1/telegram`
 
 ```json
 {
-  "text": "message",
+  "message": "message",
   "chat_id": "your_chat_id_with_bot",
   "parse_mode": "Markdown"
 }

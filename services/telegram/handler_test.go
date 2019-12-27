@@ -24,7 +24,7 @@ func TestSendMessage(t *testing.T) {
 		{Config{}, message{ParseMode: "html"}, true},
 		{Config{}, message{ParseMode: "html"}, true},
 		{Config{URL: "https://example.com"}, message{ParseMode: "HTML"}, true},
-		{Config{URL: testServer.URL, ParseMode: "Markdown"}, message{Text: "test"}, false},
+		{Config{URL: testServer.URL, ParseMode: "Markdown"}, message{Message: "test"}, false},
 	}
 
 	//t.Logf("I! testServer url %s", testServer.URL)

@@ -39,7 +39,7 @@ func ServiceHandler(c Config) http.HandlerFunc {
 }
 
 type message struct {
-	Text     string `json:"text"`
+	Message  string `json:"message"`
 	Title    string `json:"title"`
 	Subtitle string `json:"subtitle"`
 	Sound    string `json:"sound"`
@@ -47,5 +47,5 @@ type message struct {
 
 func sendMessage(c Config, m message) error {
 
-	return mack.Notify(m.Text, m.Title, m.Subtitle, m.Sound)
+	return mack.Notify(m.Message, m.Title, m.Subtitle, m.Sound)
 }

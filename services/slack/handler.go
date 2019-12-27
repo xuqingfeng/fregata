@@ -40,7 +40,7 @@ func ServiceHandler(c Config) http.HandlerFunc {
 }
 
 type message struct {
-	Text        string       `json:"text"`
+	Message     string       `json:"message"`
 	Channel     string       `json:"channel"`
 	Username    string       `json:"username"`
 	IconEmoji   string       `json:"icon_emoji"`

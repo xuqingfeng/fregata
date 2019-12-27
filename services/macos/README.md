@@ -8,9 +8,9 @@ POST `/fregata/v1/macos`
 
 ```json
 {
-    "text": "text",
     "title": "title",
     "subtitle": "subtitle",
+    "message": "message",
     "sound": "sound"
 }
 ```
