@@ -5,8 +5,7 @@ const (
 	/*
 	 * App
 	 */
-	Name       = "fregata"
-	DaemonName = "fregatad"
+	Name = "fregata"
 
 	/*
 	 * API

@@ -40,7 +40,7 @@ func New(c *Config, logService logging.Interface) (*Server, error) {
 		LogService: logService,
 		Logger:     l,
 	}
-	s.Logger.Printf("I! %s started\n", vars.DaemonName)
+	s.Logger.Printf("I! %s started\n", vars.Name)
 	s.router.HandleFunc("/ping", ServiceHandler)
 
 	// start services in parallel
