@@ -1,7 +1,9 @@
 VERSION=`git describe --abbrev=0 --tags`
 
-# Refresh go.sum after upgrading deps.
-# Use: GOPROXY=https://proxy.golang.org,direct make deps
+# Download module dependencies (also happens automatically on go build/test).
+download:
+	go mod download
+
 deps:
 	go mod tidy
 
