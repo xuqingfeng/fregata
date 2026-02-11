@@ -4,7 +4,16 @@
 ### Install
 
 ```bash
-go get github.com/xuqingfeng/fregata/cmd/...
+# Install the binary to $GOPATH/bin (or $HOME/go/bin)
+go install github.com/xuqingfeng/fregata/cmd/fregata@latest
+```
+
+Or build from source:
+
+```bash
+git clone https://github.com/xuqingfeng/fregata.git && cd fregata
+make build
+# binary: ./out/fregata
 ```
 
 ### Supported Services
