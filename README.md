@@ -3,6 +3,10 @@
 
 ### Install
 
+Download from [release](https://github.com/xuqingfeng/fregata/releases) page
+
+Or install through go cmd:
+
 ```bash
 # Install the binary to $GOPATH/bin (or $HOME/go/bin)
 go install github.com/xuqingfeng/fregata/cmd/fregata@latest
