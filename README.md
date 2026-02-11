@@ -11,12 +11,12 @@ go get github.com/xuqingfeng/fregata/cmd/...
 
 [examples](./examples)
 
-- slack
-- telegram
-- twilio
-- wechat
-- smtp
-- macos
+- Slack
+- Telegram
+- Twilio
+- Wechat
+- SMTP Email
+- MACOS
 
 ### Usage
 
