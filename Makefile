@@ -1,7 +1,12 @@
 VERSION=`git describe --abbrev=0 --tags`
 
+# Refresh go.sum after upgrading deps.
+# Use: GOPROXY=https://proxy.golang.org,direct make deps
+deps:
+	go mod tidy
+
 test:
-	go vet ./... && go test -v $$(go list ./... | grep -v /vendor/)
+	go vet ./... && go test -v --tags '' $$(go list ./...)
 
 fmt:
 	go fmt ./...

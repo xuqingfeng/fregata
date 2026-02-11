@@ -47,6 +47,9 @@ type message struct {
 
 func sendMessage(c Config, m message) error {
 
+	if c.Token == "" {
+		return errors.New("token is required")
+	}
 	if m.ChatId == "" {
 		m.ChatId = c.ChatId
 	}
@@ -55,7 +58,7 @@ func sendMessage(c Config, m message) error {
 		m.ParseMode = c.ParseMode
 	}
 	if m.ParseMode != "Markdown" && m.ParseMode != "HTML" {
-		return errors.Errorf("parse-mode %s not valid, use 'Markdown' or 'HTML'", c.ParseMode)
+		return errors.Errorf("parse-mode %s not valid, use 'Markdown' or 'HTML'", m.ParseMode)
 	}
 
 	dataInJSON, err := json.Marshal(m)
