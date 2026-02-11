@@ -1,7 +1,12 @@
 VERSION=`git describe --abbrev=0 --tags`
 
+# Refresh go.sum after upgrading deps.
+# Use: GOPROXY=https://proxy.golang.org,direct make deps
+deps:
+	go mod tidy
+
 test:
-	go vet ./... && go test -v $$(go list ./... | grep -v /vendor/)
+	go vet ./... && go test -v --tags '' $$(go list ./...)
 
 fmt:
 	go fmt ./...
@@ -11,6 +16,7 @@ build-all: fmt
 	GOOS=linux GOARCH=386 go build -ldflags "-w -s -X main.version=${VERSION}" -o out/fregata-linux-386 cmd/fregata/main.go && \
 	GOOS=linux GOARCH=arm go build -ldflags "-w -s -X main.version=${VERSION}" -o out/fregata-linux-arm cmd/fregata/main.go && \
 	GOOS=darwin GOARCH=amd64 go build -ldflags "-w -s -X main.version=${VERSION}" -o out/fregata-darwin-amd64 cmd/fregata/main.go && \
+	GOOS=darwin GOARCH=arm64 go build -ldflags "-w -s -X main.version=${VERSION}" -o out/fregata-darwin-arm64 cmd/fregata/main.go && \
 	GOOS=windows GOARCH=amd64 go build -ldflags "-w -s -X main.version=${VERSION}" -o out/fregata-windows-amd64.exe cmd/fregata/main.go && \
 	GOOS=windows GOARCH=386 go build -ldflags "-w -s -X main.version=${VERSION}" -o out/fregata-windows-386.exe cmd/fregata/main.go
 
