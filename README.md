@@ -1,6 +1,5 @@
 # fregata
 [![godoc](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat-square)](https://godoc.org/github.com/xuqingfeng/fregata)
-[![api](https://img.shields.io/badge/docs-API-orange.svg?style=flat-square)](https://xuqingfeng.github.io/fregata/api.html)
 
 ### Install
 
@@ -23,13 +22,6 @@ go get github.com/xuqingfeng/fregata/cmd/...
 
 - [fregata.conf](./etc/fregata.conf)
 - `fregata -config fregata.conf`
-- invoke [API](https://xuqingfeng.github.io/fregata/api.html)
-
-### Test
-
-```bash
-make test
-```
 
 ### Docker
 
